@@ -42,6 +42,9 @@ export class RegistrationService {
   async registerUser(
     registerRequestDto: RegisterRequestDto,
   ): Promise<RegistrationStatusResponse> {
+    if (!registerRequestDto.isAcceptTermsAndConditions) {
+      throw new BadRequestException('Must accept terms and conditions');
+    }
     await this.handleExistingUser(registerRequestDto.email);
     const existingGoogleUser = await this.userModel
       .findOne({ email: registerRequestDto.email })
