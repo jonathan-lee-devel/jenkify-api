@@ -117,7 +117,7 @@ export class RegistrationService {
    */
   private async registerWithExistingGoogleUser(
     registerRequestDto: RegisterRequestDto,
-    existingGoogleUser: Document<unknown, {}, User> &
+    existingGoogleUser: Document<unknown, unknown, User> &
       User &
       Required<{ _id: mongoose.Types.ObjectId }>,
   ): Promise<void> {
